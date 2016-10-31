@@ -80,3 +80,17 @@ function saveInFile (array $arr, $filename)
         die('Error');
     }
 }
+function setFlash($message)
+{
+	$_SESSION['flash_message'] = $message;
+}
+
+function getFlash()
+{
+	if (!isset($_SESSION['flash_message'])) {
+		return null;
+	}
+	$message = $_SESSION['flash_message'];
+	unset($_SESSION['flash_message']);
+	return $message;
+}
