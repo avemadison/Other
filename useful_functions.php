@@ -87,6 +87,16 @@ function getFlash()
 	return $message;
 }
 
+function loadComments($file = COMMENTS_FILE)
+{
+    $commentsRaw = file($file);
+    $comments = [];
+    foreach ($commentsRaw as $comment) {
+        $comments[] = unserialize($comment);
+    }
+    return $comments;
+}
+
 /**
  * Возвращение значений из ф-и по ссылке
  * Форматирование текста:
