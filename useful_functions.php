@@ -1,16 +1,8 @@
 <?php
-/**
- * Возвращение значений из ф-и по ссылке
- * Форматирование текста:
- * 1) strtolower
- * 2) ucfirst
- */
-function fix_name(&$n1, &$n2, &$n3)
+
+function getKey ($value, $key)
 {
-    $n1 = ucfirst(strtolower($n1));
-    $n2 = ucfirst(strtolower($n2));
-    $n3 = ucfirst(strtolower($n3));
-    return $n1. ' '. $n2. ' '. $n3.' ';
+    return $value ($key);
 }
 
 /*
@@ -93,4 +85,18 @@ function getFlash()
 	$message = $_SESSION['flash_message'];
 	unset($_SESSION['flash_message']);
 	return $message;
+}
+
+/**
+ * Возвращение значений из ф-и по ссылке
+ * Форматирование текста:
+ * 1) strtolower
+ * 2) ucfirst
+ */
+function fix_name(&$n1, &$n2, &$n3)
+{
+    $n1 = ucfirst(strtolower($n1));
+    $n2 = ucfirst(strtolower($n2));
+    $n3 = ucfirst(strtolower($n3));
+    return $n1. ' '. $n2. ' '. $n3.' ';
 }
