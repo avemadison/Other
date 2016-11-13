@@ -1,0 +1,9 @@
+Листинг 1.7. Поиск подстроки с использованием функции strpos( )
+if (strpos($_POST['email'], '@') === false) {
+print 'There was no @ in the e-mail address!';
+}
+
+
+Листинг 1.8. Выделение подстроки с использованием функции substr()
+$substring = substr($string,$start,$length);
+$username = substr($_GET['username'],0,8);
