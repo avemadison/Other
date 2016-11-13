@@ -18,3 +18,11 @@ $new_string = substr_replace($old_string,$new_substring,$start,$length);
 Example: $credit_card = '4111 1254 7843 9746';
 echo substr_replace($credit_card,'xxxx xxxx xxxx ',0,strlen($credit_card)-4);
 //xxxx xxxx xxxx 9746//
+
+
+Листинг 1.24. Преобразование регистра символов
+print ucfirst("how do you do today?");
+print ucwords("the prince of wales");
+//Код листинга выводит следующий результат:
+How do you do today?
+The Prince Of Wales
