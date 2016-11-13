@@ -7,3 +7,14 @@ print 'There was no @ in the e-mail address!';
 Листинг 1.8. Выделение подстроки с использованием функции substr()
 $substring = substr($string,$start,$length);
 $username = substr($_GET['username'],0,8);
+
+
+Листинг 1.14. Замена подстроки с использованием функции substr_replace()
+// Все символы от позиции $start до конца $old_string заменяются содержимым $new_substring
+$new_string = substr_replace($old_string,$new_substring,$start);
+// $length символов, начиная с позиции $start, заменяются содержимым $new_substring
+$new_string = substr_replace($old_string,$new_substring,$start,$length);
+
+Example: $credit_card = '4111 1254 7843 9746';
+echo substr_replace($credit_card,'xxxx xxxx xxxx ',0,strlen($credit_card)-4);
+//xxxx xxxx xxxx 9746//
