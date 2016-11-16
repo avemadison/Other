@@ -66,3 +66,16 @@ if (!in_array($fruit, $array)) { $array[] = $fruit; }
 foreach ($_GET['fruits'] as $fruit) {
 $array[$fruit] = $fruit;
 }
+
+
+Задача:
+Имеется пара массивов. Требуется вычислить их объединение (все элементы), пересечение (элементы, входящие в оба массива) или разность (элементы, входящие в одно множество, но не в оба).
+Решение
+Вычисление объединения:
+$union = array_unique(array_merge($a, $b));
+Вычисление пересечения:
+$intersection = array_intersect($a, $b);
+Вычисление простой разности:
+$difference = array_diff($a, $b);
+Вычисление симметричной разности:
+$difference = array_merge(array_diff($a, $b), array_diff($b, $a));
