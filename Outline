@@ -26,3 +26,28 @@ print ucwords("the prince of wales");
 //Код листинга выводит следующий результат:
 How do you do today?
 The Prince Of Wales
+
+
+Задача:
+Требуется определить, содержит ли массив некоторое значение.
+Решение:
+/*Воспользуемся функцией in_array()*/
+if (in_array($value, $array)) {
+// В массиве $array имеется элемент со значением $value
+}
+Example:
+$book_collection = array('Emma', 'Pride and Prejudice', 'Northhanger Abbey');
+$book = 'Sense and Sensibility';
+if (in_array($book, $book_collection)) {
+echo 'Own it.';
+} else {
+echo 'Need it.';
+}
+
+
+Задача:
+Требуется переставить элементы массива в обратном порядке.
+Решение:
+/*Воспользуемся функцией array_reverse()*/
+$array = array('Zero', 'One', 'Two');
+$reversed = array_reverse($array);
