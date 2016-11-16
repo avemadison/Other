@@ -51,3 +51,18 @@ echo 'Need it.';
 /*Воспользуемся функцией array_reverse()*/
 $array = array('Zero', 'One', 'Two');
 $reversed = array_reverse($array);
+
+
+Задача:
+Требуется исключить из массива дубликаты (повторяющиеся значения).
+Решение:
+//Если массив уже построен, воспользуемся функцией array_unique(), которая возвращает новый массив без дубликатов:
+$unique = array_unique($array);
+//Если массив строится одновременно с обработкой результатов, для числовых массивов решение может выглядеть так:
+foreach ($_GET['fruits'] as $fruit) {
+if (!in_array($fruit, $array)) { $array[] = $fruit; }
+}
+//Решение для ассоциативных массивов:
+foreach ($_GET['fruits'] as $fruit) {
+$array[$fruit] = $fruit;
+}
