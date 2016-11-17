@@ -1,10 +1,17 @@
 <?php
-
+/*
+* вытащить ключ из POST
+*/
 function getKey ($value, $key)
 {
     return $value ($key);
 }
-
+/*
+* save image
+*/
+function save_image($tmp_name, $new_image_name) {
+    return move_uploaded_file( $tmp_name, IMAGES_PATH.DIRECTORY_SEPARATOR.$new_image_name);
+}
 /*
 * array in <pre>
 */
