@@ -9,9 +9,16 @@ function getKey ($value, $key)
 /*
 * save image
 */
+define('IMAGES_PATH', 'uploads');
 function save_image($tmp_name, $new_image_name) {
     return move_uploaded_file( $tmp_name, IMAGES_PATH.DIRECTORY_SEPARATOR.$new_image_name);
 }
+$new_image_name = generate_image_name($tmp_name);
+        $image_data = [
+            'original_name' => $_FILES['photo']['name'],
+            'date_of_download' => time(),
+            'photo' => $new_image_name,
+        ];
 /*
 * array in <pre>
 */
