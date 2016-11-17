@@ -1,3 +1,88 @@
+Задача
+Требуется записать cookie, чтобы ваш сайт мог распознавать последующие запросы от того же браузера.
+Решение
+Вызовите функцию setcookie() с именем и значением cookie:
+setcookie('flavor','chocolate chip');
+
+
+Листинг 8.1. validate()
+function validate($user, $pass) {
+/* Заменить соответствующей проверкой имени пользователя
+и пароля - например, проверкой по базе данных */
+$users = array('david' => 'fadj&32',
+'adam' => '8HEj838');
+if (isset($users[$user]) && ($users[$user] === $pass)) {
+return true;
+} else {
+return false;
+}
+}
+
+
+Задача
+Требуется усилить контроль за процедурой начала сеанса, например вывести собственную форму для ввода учетных данных.
+Решение
+$secret_word = 'if i ate spinach';
+if (validate($_POST['username'],$_POST['password'])) {
+setcookie('login',
+$_POST['username'].','.md5($_POST['username'].$secret_word));
+}
+При использовании аутентификации с cookie приходится выводить собственную форму ввода учетных данных вроде этой:
+Листинг 8.6. Пример формы ввода учетных данных аутентификации
+<form method="POST" action="login.php">
+Username: <input type="text" name="username"> <br>
+Password: <input type="password" name="password"> <br>
+<input type="submit" value="Log In">
+</form>
+
+
+
+Листинг 8.7. Проверка cookie
+unset($username);
+if (isset($_COOKIE['login'])) {
+list($c_username, $cookie_hash) = split(',', $_COOKIE['login']);
+if (md5($c_username.$secret_word) == $cookie_hash) {
+$username = $c_username;
+} else {
+print "You have sent a bad cookie.";
+}
+}
+if (isset($username)) {
+print "Welcome, $username.";
+} else {
+print "Welcome, anonymous user.";
+}
+
+
+Листинг 8.8. Хранение информации подключения в сеансе
+if (validate($_POST['username'],$_POST['password'])) {
+$_SESSION['login'] =
+$_POST['username'].','.md5($_POST['username'].$secret_word);
+}
+Код проверки, приведенный в листинге 8.9, почти не изменился; просто на этот раз вместо $_COOKIE в нем используется $_SESSION.
+Листинг 8.9. Проверка сеансовой информации
+unset($username);
+if (isset($_SESSION['login'])) {
+list($c_username,$cookie_hash) = explode(',',$_SESSION['login']);
+if (md5($c_username.$secret_word) == $cookie_hash) {
+$username = $c_username;
+} else {
+print "You have tampered with your session.";
+}
+}
+
+
+
+8.11. Перенаправление запросов
+Задача
+Требуется автоматически направить пользователя на новый URL-адрес. Например, после успешного сохранения данных формы 
+пользователь должен попасть на страницу, подтверждающую сохранение данных.
+Решение
+header('Location: http://www.example.com/confirm.html');
+exit();
+
+
+
 Листинг 1.7. Поиск подстроки с использованием функции strpos( )
 if (strpos($_POST['email'], '@') === false) {
 print 'There was no @ in the e-mail address!';
