@@ -34,4 +34,40 @@ Password: <input type="password" name="password"> <br>
 
 ---------------------------
 
+Листинг 8.7. Проверка cookie
+unset($username);
+if (isset($_COOKIE['login'])) {
+list($c_username, $cookie_hash) = split(',', $_COOKIE['login']);
+if (md5($c_username.$secret_word) == $cookie_hash) {
+$username = $c_username;
+} else {
+print "You have sent a bad cookie.";
+}
+}
+if (isset($username)) {
+print "Welcome, $username.";
+} else {
+print "Welcome, anonymous user.";
+}
+
+---------------------------
+
+Листинг 8.8. Хранение информации подключения в сеансе
+if (validate($_POST['username'],$_POST['password'])) {
+$_SESSION['login'] =
+$_POST['username'].','.md5($_POST['username'].$secret_word);
+}
+Код проверки, приведенный в листинге 8.9, почти не изменился; просто на этот раз вместо $_COOKIE в нем используется $_SESSION.
+Листинг 8.9. Проверка сеансовой информации
+unset($username);
+if (isset($_SESSION['login'])) {
+list($c_username,$cookie_hash) = explode(',',$_SESSION['login']);
+if (md5($c_username.$secret_word) == $cookie_hash) {
+$username = $c_username;
+} else {
+print "You have tampered with your session.";
+}
+}
+
+---------------------------
 
