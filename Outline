@@ -11,42 +11,7 @@ return false;
 }
 }
 
-
-Листинг 8.7. Проверка cookie
-unset($username);
-if (isset($_COOKIE['login'])) {
-list($c_username, $cookie_hash) = split(',', $_COOKIE['login']);
-if (md5($c_username.$secret_word) == $cookie_hash) {
-$username = $c_username;
-} else {
-print "You have sent a bad cookie.";
-}
-}
-if (isset($username)) {
-print "Welcome, $username.";
-} else {
-print "Welcome, anonymous user.";
-}
-
-
-Листинг 8.8. Хранение информации подключения в сеансе
-if (validate($_POST['username'],$_POST['password'])) {
-$_SESSION['login'] =
-$_POST['username'].','.md5($_POST['username'].$secret_word);
-}
-Код проверки, приведенный в листинге 8.9, почти не изменился; просто на этот раз вместо $_COOKIE в нем используется $_SESSION.
-Листинг 8.9. Проверка сеансовой информации
-unset($username);
-if (isset($_SESSION['login'])) {
-list($c_username,$cookie_hash) = explode(',',$_SESSION['login']);
-if (md5($c_username.$secret_word) == $cookie_hash) {
-$username = $c_username;
-} else {
-print "You have tampered with your session.";
-}
-}
-
-
+---------------------------
 
 8.11. Перенаправление запросов
 Задача
@@ -56,18 +21,20 @@ print "You have tampered with your session.";
 header('Location: http://www.example.com/confirm.html');
 exit();
 
-
+---------------------------
 
 Листинг 1.7. Поиск подстроки с использованием функции strpos( )
 if (strpos($_POST['email'], '@') === false) {
 print 'There was no @ in the e-mail address!';
 }
 
+---------------------------
 
 Листинг 1.8. Выделение подстроки с использованием функции substr()
 $substring = substr($string,$start,$length);
 $username = substr($_GET['username'],0,8);
 
+---------------------------
 
 Листинг 1.14. Замена подстроки с использованием функции substr_replace()
 // Все символы от позиции $start до конца $old_string заменяются содержимым $new_substring
@@ -79,6 +46,7 @@ Example: $credit_card = '4111 1254 7843 9746';
 echo substr_replace($credit_card,'xxxx xxxx xxxx ',0,strlen($credit_card)-4);
 //xxxx xxxx xxxx 9746//
 
+---------------------------
 
 Листинг 1.24. Преобразование регистра символов
 print ucfirst("how do you do today?");
@@ -87,6 +55,7 @@ print ucwords("the prince of wales");
 How do you do today?
 The Prince Of Wales
 
+---------------------------
 
 Задача:
 Требуется определить, содержит ли массив некоторое значение.
@@ -104,6 +73,7 @@ echo 'Own it.';
 echo 'Need it.';
 }
 
+---------------------------
 
 Задача:
 Требуется переставить элементы массива в обратном порядке.
@@ -112,6 +82,7 @@ echo 'Need it.';
 $array = array('Zero', 'One', 'Two');
 $reversed = array_reverse($array);
 
+---------------------------
 
 Задача:
 Требуется исключить из массива дубликаты (повторяющиеся значения).
@@ -127,6 +98,7 @@ foreach ($_GET['fruits'] as $fruit) {
 $array[$fruit] = $fruit;
 }
 
+---------------------------
 
 Задача:
 Имеется пара массивов. Требуется вычислить их объединение (все элементы), пересечение (элементы, входящие в оба массива) или разность (элементы, входящие в одно множество, но не в оба).
@@ -140,6 +112,7 @@ $difference = array_diff($a, $b);
 Вычисление симметричной разности:
 $difference = array_merge(array_diff($a, $b), array_diff($b, $a));
 
+---------------------------
 
 Задача:
 Требуется поменять местами значения двух переменных без использования дополнительных переменных для промежуточного хранения данных.
