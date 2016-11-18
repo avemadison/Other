@@ -1,0 +1,37 @@
+Задача
+Требуется записать cookie, чтобы ваш сайт мог распознавать последующие запросы от того же браузера.
+Решение
+Вызовите функцию setcookie() с именем и значением cookie:
+setcookie('flavor','chocolate chip');
+
+---------------------------
+
+Задача
+Требуется прочитать значение cookie, записанное ранее.
+Решение
+Обратитесь к суперглобальному массиву $_COOKIE:
+if (isset($_COOKIE['flavor'])) {
+print "You ate a {$_COOKIE['flavor']} cookie.";
+}
+
+---------------------------
+
+Задача
+Требуется усилить контроль за процедурой начала сеанса, например вывести собственную форму для ввода учетных данных.
+Решение
+$secret_word = 'if i ate spinach';
+if (validate($_POST['username'],$_POST['password'])) {
+setcookie('login',
+$_POST['username'].','.md5($_POST['username'].$secret_word));
+}
+При использовании аутентификации с cookie приходится выводить собственную форму ввода учетных данных вроде этой:
+Листинг 8.6. Пример формы ввода учетных данных аутентификации
+<form method="POST" action="login.php">
+Username: <input type="text" name="username"> <br>
+Password: <input type="password" name="password"> <br>
+<input type="submit" value="Log In">
+</form>
+
+---------------------------
+
+
